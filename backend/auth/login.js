@@ -1,33 +1,48 @@
-const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken'); // Brakowało w Twoim kodzie
+const pool = require('../db'); // Upewnij się, że masz poprawne połączenie z bazą danych
 const env = require('dotenv');
-
-const {createSecretToken} = require('../token_generation/generateToken')
 
 env.config();
 
-const login = async (req, res) => {
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
 
-    const {email, password} = req.body;
-    if (!email || !password) {
-        return res.status(400).json({message: 'Email is required'});
+    try {
+        // Sprawdź, czy użytkownik istnieje
+        const data = await pool.query('SELECT * FROM users WHERE email = $1;', [email]);
+        const user = data.rows[0]; // Zakładamy, że email jest unikalny
+
+        if (!user) {
+            return res.status(400).json({
+                error: 'User is not registered, please sign up first.',
+            });
+        }
+
+        // Porównanie hasła
+        const isMatch = await bcrypt.compare(password, user.passwordHash);
+
+        if (!isMatch) {
+            return res.status(400).json({
+                error: 'Incorrect password!',
+            });
+        }
+
+        // Generowanie tokena JWT
+        const token = jwt.sign(
+            { email: user.email },
+            process.env.TOKEN_KEY,
+            { expiresIn: '1h' } // Opcjonalne: ustal czas wygaśnięcia tokena
+        );
+
+        return res.status(200).json({
+            message: 'User signed in!',
+            token: token,
+        });
+    } catch (error) {
+        console.error('Error during login:', error);
+        return res.status(500).json({
+            error: 'Database error occurred while signing in!',
+        });
     }
-
-    const user = await User.findOne({ email });
-    if (!(user && (await bcrypt.compare(password, user.password)))) {
-        return res.status(404).json({ message: "Invalid credentials" });
-    }
-    const token = createSecretToken(user._id, user.isAdmin);
-    res.cookie("token", token, {
-        // domain: process.env.FRONTEND_URL, // Set your domain here
-        path: "/", // Cookie is accessible from all paths
-        expires: new Date(Date.now() + 86400000), // Cookie expires in 1 day
-        secure: true, // Cookie will only be sent over HTTPS
-        httpOnly: true, // Cookie cannot be accessed via client-side scripts
-        sameSite: "None",
-    });
-
-    res.json({token: token});
-}
-
-module.exports = login;
+};

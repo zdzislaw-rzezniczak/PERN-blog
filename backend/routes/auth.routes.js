@@ -1,6 +1,6 @@
 const express = require("express");
 
-const login = require("../auth/login");
+const {login} = require("../auth/login");
 const {verifyToken} = require("../middleware/jwt.middleware");
 
 const router = express.Router();

@@ -3,6 +3,8 @@ const queries = require("../querries/querries");
 const bcrypt = require('bcryptjs');
 
 
+
+
 const getUsers = (req, res) => {
     pool.query(queries.getUsers, (error, results) => {
         if (error) throw error;
@@ -27,6 +29,7 @@ const deleteUser = (req, res) => {
     })
 }
 
+
 const createUser = async (request, response) => {
     try {
         const { firstName, email, password } = request.body;
@@ -41,6 +44,7 @@ const createUser = async (request, response) => {
         console.log('Values:', [firstName, email, passwordHash]);
 
         const results = await pool.query(queries.createUser, [firstName, email, passwordHash]);
+        // const results = await pool.query(queries.createAdmin, [firstName, email, passwordHash]);
 
         response.status(201).json({ message: "User added", userId: results.insertId });
     } catch (error) {
@@ -60,6 +64,7 @@ const createUser = async (request, response) => {
 module.exports = {
     getUsers,
     getUsersById,
+
     createUser,
     deleteUser
 }

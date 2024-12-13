@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser");
-const blogRoutes = require('./routes/user.route')
+
 
 port = process.env.PORT || 5000;
 
@@ -15,9 +15,11 @@ app.listen(port, () => {
     console.log(`Blog is listening at http://localhost:${port}`);
 });
 
-
+const blogRoutes = require('./routes/user.route')
 app.use('/api/users', blogRoutes);
 
+const authRoutes = require('./routes/auth.routes');
+app.use('/api/auth', authRoutes);
 
 
 
