@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken'); // Brakowało w Twoim kodzie
-const pool = require('../db'); // Upewnij się, że masz poprawne połączenie z bazą danych
+const jwt = require('jsonwebtoken');
+const pool = require('../db');
 const env = require('dotenv');
 
 env.config();
@@ -9,10 +9,10 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Sprawdź, czy użytkownik istnieje
         const data = await pool.query('SELECT * FROM users WHERE email = $1;', [email]);
         const user = data.rows[0]; // Zakładamy, że email jest unikalny
 
+        // console.log(user);
         if (!user) {
             return res.status(400).json({
                 error: 'User is not registered, please sign up first.',
@@ -28,11 +28,14 @@ exports.login = async (req, res) => {
             });
         }
 
+        // console.log('User data for token:', { email: user.email, admin: user.isadmin, passwd: user.passwordHash });
+
+
         // Generowanie tokena JWT
         const token = jwt.sign(
-            { email: user.email },
+            { email: user.email, isAdmin: user.isadmin,  },
             process.env.TOKEN_KEY,
-            { expiresIn: '1h' } // Opcjonalne: ustal czas wygaśnięcia tokena
+            { expiresIn: '1h' }
         );
 
         return res.status(200).json({
