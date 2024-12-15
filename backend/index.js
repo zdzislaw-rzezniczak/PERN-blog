@@ -21,7 +21,8 @@ app.use('/api/users', blogRoutes);
 const authRoutes = require('./routes/auth.routes');
 app.use('/api/auth', authRoutes);
 
-
+const postsRoutes = require('./routes/posts.routes');
+app.use('/api/posts', postsRoutes);
 
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));

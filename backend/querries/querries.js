@@ -1,3 +1,5 @@
+////USER QUERIES
+
 const getUsers = "SELECT * FROM users";
 const getUserByID = "SELECT * FROM users WHERE id = $1";
 const getUserByEmail = "SELECT * FROM users WHERE email = $1";
@@ -6,11 +8,25 @@ const createAdmin = "INSERT INTO users (\"firstName\", email, \"passwordHash\", 
 const deleteUserById = "DELETE FROM users WHERE id = $1";
 
 
+//// POSTS QUERIES
+
+const getPosts = "SELECT * FROM posts";
+const getPostByID = "SELECT * FROM posts WHERE id = $1";
+const createPost = "INSERT INTO posts (authorid, title, slug, createdat, content) VALUES ($1, $2, $3, $4, $5);";
+const deletePost = "DELETE FROM posts WHERE id = $1";
+
+
+
 module.exports = {
     getUserByID,
     getUsers,
     createUser,
     deleteUserById,
     getUserByEmail,
-    createAdmin
+    createAdmin,
+
+    getPosts,
+    getPostByID,
+    createPost,
+    deletePost
 }

@@ -10,7 +10,7 @@ exports.login = async (req, res) => {
 
     try {
         const data = await pool.query('SELECT * FROM users WHERE email = $1;', [email]);
-        const user = data.rows[0]; // Zakładamy, że email jest unikalny
+        const user = data.rows[0];
 
         // console.log(user);
         if (!user) {
@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
 
         // Generowanie tokena JWT
         const token = jwt.sign(
-            { email: user.email, isAdmin: user.isadmin,  },
+            { id: user.id, email: user.email, isAdmin: user.isadmin,  },
             process.env.TOKEN_KEY,
             { expiresIn: '1h' }
         );
