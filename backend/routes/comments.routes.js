@@ -5,10 +5,10 @@ const {verifyToken} = require("../middleware/jwt.middleware");
 const isAdmin = require("../middleware/isAdmin.middleware");
 
 router.get('/', controller.getComments);
-router.get('/:id', verifyToken, controller.getCommentById);
+router.get('/:id', controller.getCommentById);
 router.post('/', verifyToken, controller.createComment);
 router.delete('/:id', isAdmin, controller.deleteComment)
-
+router.get('/author/:id', controller.getCommentsByAuthor)
 
 
 
