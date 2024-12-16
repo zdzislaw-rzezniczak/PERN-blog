@@ -24,6 +24,9 @@ app.use('/api/auth', authRoutes);
 const postsRoutes = require('./routes/posts.routes');
 app.use('/api/posts', postsRoutes);
 
+const commentsRoutes = require('./routes/comments.routes');
+app.use('/api/comments', commentsRoutes);
+
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

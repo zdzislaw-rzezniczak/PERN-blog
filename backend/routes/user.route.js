@@ -6,8 +6,8 @@ const isAdmin = require("../middleware/isAdmin.middleware");
 
 router.get('/', isAdmin, controller.getUsers);
 router.get('/:id', isAdmin, controller.getUsersById);
-router.post('/createUser', controller.createUser);
-router.delete('/deleteUser/:id', isAdmin, controller.deleteUser)
+router.post('/', controller.createUser);
+router.delete('/:id', isAdmin, controller.deleteUser)
 
 
 

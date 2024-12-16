@@ -1,8 +1,6 @@
 const pool = require('../db');
 const queries = require("../querries/querries");
 const {verify} = require("jsonwebtoken");
-
-
 const slugify = require('slugify');
 
 
@@ -41,8 +39,6 @@ const createPost = async (req, res) => {
     const authorId = decoded.id
     // console.log(title, content, createdAt, authorId, slug);
 
-    ///TODO
-    // dodać zapisywanie do bazy posta
 
     const result = await pool.query(queries.createPost, [authorId, title, slug, createdAt, content])
     return res.status(200).json({msg: "post created", content: result})
