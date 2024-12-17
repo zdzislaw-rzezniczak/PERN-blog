@@ -1,17 +1,17 @@
 // App.js
 import { Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home';
-import Authors from "./Pages/Authors.jsx";
-import CreateAuthor from "./Pages/CreateAuthor.jsx";
-import CreatePost from "./Pages/CreatePost.jsx";
-import DeletePost from "./Pages/DeletePost.jsx";
-import ErrorPage from "./Pages/ErrorPage.jsx";
-import Login from "./Pages/Login.jsx";
-import Logout from "./Pages/Logout.jsx";
-import PostDetails from "./Pages/PostDetails.jsx";
-import Register from "./Pages/Register.jsx";
-import Posts from "./Pages/Posts.jsx";
-import Navbar from "./Components/Navbar.jsx";
+import Home from './pages/Home';
+import Authors from "./pages/Authors.jsx";
+import CreateAuthor from "./pages/CreateAuthor.jsx";
+import CreatePost from "./pages/CreatePost.jsx";
+import DeletePost from "./pages/DeletePost.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
+import Login from "./pages/Login.jsx";
+import Logout from "./pages/Logout.jsx";
+import PostDetails from "./pages/PostDetails.jsx";
+import Register from "./pages/Register.jsx";
+import Posts from "./pages/Posts.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 
 const App = () => {
