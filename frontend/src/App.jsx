@@ -12,10 +12,12 @@ import PostDetails from "./pages/PostDetails.jsx";
 import Register from "./pages/Register.jsx";
 import Posts from "./pages/Posts.jsx";
 import Navbar from "./components/Navbar.jsx";
+import {useState} from "react";
 
 
 const App = () => {
-  return (
+
+    return (
       <>
         <Navbar/>
         <Routes>

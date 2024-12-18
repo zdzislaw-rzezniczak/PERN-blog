@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PostItem from "../components/PostItem.jsx";
+import {Link} from "react-router-dom";
 
 const Posts = () => {
 
@@ -29,7 +30,11 @@ const Posts = () => {
 
     return (
         <div>
-            {loading ? <p>Loading posts...</p> : posts.map((post) => <PostItem key={post.id} post={post} />)}
+            {loading ? <p>Loading posts...</p> : posts.map((post) => <PostItem key={post.id} post={post}/>)}
+            <div>
+                <span>Dodawaj kolejne posty: <Link to="/create-post">Add Post</Link></span>
+            </div>
+
         </div>
     );
 
