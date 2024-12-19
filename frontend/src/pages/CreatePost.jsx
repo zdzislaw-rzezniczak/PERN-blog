@@ -63,7 +63,7 @@ const CreatePost = () => {
 
     return (
         <div>
-            <h2>Create a Movie</h2>
+            <h2>Create a Post</h2>
             {message && <p style={{ color: 'red' }}>{message}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -79,8 +79,7 @@ const CreatePost = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="content">Content:</label>
-                    <input
-                        type="text"
+                    <textarea
                         id="content"
                         name="content"
                         value={formData.content}

@@ -12,7 +12,7 @@ import PostDetails from "./pages/PostDetails.jsx";
 import Register from "./pages/Register.jsx";
 import Posts from "./pages/Posts.jsx";
 import Navbar from "./components/Navbar.jsx";
-import {useState} from "react";
+import AuthorPosts from "./pages/AuthorPosts.jsx";
 
 
 const App = () => {
@@ -23,6 +23,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/authors" element={<Authors />} />
+          <Route path="/author-posts/:authorId" element={<AuthorPosts />} />
           <Route path="/create-author" element={<CreateAuthor />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/delete-post" element={<DeletePost />} />

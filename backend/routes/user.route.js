@@ -8,6 +8,7 @@ router.get('/', controller.getUsers);
 router.get('/:id', controller.getUsersById);
 router.post('/', controller.createUser);
 router.delete('/:id', isAdmin, controller.deleteUser)
+router.get('/posts/:id', controller.getPostsByAuthorId)
 
 
 

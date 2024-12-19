@@ -22,7 +22,7 @@ const createComment = "INSERT INTO post_comments (\"postId\", \"createdAt\", con
 const deleteComment = "DELETE FROM post_comments WHERE id = $1";
 const getCommentsByAuthor = "SELECT * FROM post_comments WHERE author = $1";
 
-
+const getPostsByAuthorId = "SELECT * FROM posts WHERE authorid = $1";
 
 module.exports = {
     getUserByID,
@@ -42,6 +42,7 @@ module.exports = {
     createComment,
     deleteComment,
     getCommentsByAuthor,
+    getPostsByAuthorId
 
 
 }

@@ -1,6 +1,7 @@
 const pool = require('../db');
 const queries = require("../querries/querries");
 const bcrypt = require('bcryptjs');
+const {getUserByID} = require("../querries/querries");
 
 
 
@@ -60,11 +61,21 @@ const createUser = async (request, response) => {
 };
 
 
+const getPostsByAuthorId= (req, res) => {
+    const id = parseInt(req.params.id);
+    pool.query(queries.getPostsByAuthorId, [id], (error, results) => {
+        if (error) throw error;
+        res.status(200).json(results.rows);
+    })
+}
+
 
 module.exports = {
     getUsers,
     getUsersById,
 
     createUser,
-    deleteUser
+    deleteUser,
+
+    getPostsByAuthorId,
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from "react-router-dom";
 
 const Authors = () => {
     const [authors, setAuthors] = useState([]); // State for authors
@@ -31,7 +32,7 @@ const Authors = () => {
                 <div>
                     {authors.map((author) => (
                         <div key={author.id}> {/* Add a unique key */}
-                            <p>First Name: {author.firstName}</p>
+                            <Link to={`/author-posts/${author.id}`}> <p>First Name: {author.firstName}</p></Link>
                             <p>Email: {author.email}</p>
                         </div>
                     ))}

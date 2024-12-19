@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from "react-router-dom";
 
 const PostItem = ({ post }) => {
     const [author, setAuthor] = useState(null); // Null indicates no data yet
@@ -50,14 +51,18 @@ const PostItem = ({ post }) => {
 
     }, [post.date]);
     return (
+
         <div className="post-item">
             <h3>{post.title}</h3>
-            <p>{post.content}</p>
+            <Link to={"/post-details"} state={{post}}>
+                <p>{post.content.toString().slice(0,30)+'...'}</p>
+            </Link>
             <p>
                 Author: {loading ? 'Loading...' : author ? author[0].firstName : 'Unknown'}
             </p>
             <p>{dateString}</p>
         </div>
+
     );
 };
 
