@@ -18,7 +18,7 @@ const deletePost = "DELETE FROM posts WHERE id = $1";
 
 const getComments = "SELECT * FROM post_comments;";
 const getCommentByID = "SELECT * FROM post_comments WHERE id = $1";
-const createComment = "INSERT INTO post_comments (\"postId\", \"createdAt\", content, author) VALUES ($1, $2, $3, $4);";
+const createComment = "INSERT INTO post_comments (\"post_id\", \"created_at\", content, author) VALUES ($1, $2, $3, $4);";
 const deleteComment = "DELETE FROM post_comments WHERE id = $1";
 const getCommentsByAuthor = "SELECT * FROM post_comments WHERE author = $1";
 
