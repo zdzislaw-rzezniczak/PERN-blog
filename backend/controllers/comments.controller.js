@@ -19,7 +19,13 @@ const getCommentById = (req, res) => {
     })
 }
 
-
+const getCommentByPostId = (req, res) => {
+    const id = parseInt(req.params.id);
+    pool.query(queries.getCommentByPostId, [id], (error, results) => {
+        if (error) throw error;
+        res.status(200).json(results.rows);
+    })
+}
 const createComment = async (req, res) => {
     const {post_id, content} = req.body;
     const createdAt = new Date().toISOString()
@@ -68,5 +74,6 @@ module.exports = {
     getCommentById,
     createComment,
     deleteComment,
-    getCommentsByAuthor
+    getCommentsByAuthor,
+    getCommentByPostId
 }

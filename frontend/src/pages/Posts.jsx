@@ -23,6 +23,8 @@ const Posts = () => {
 
 
 
+
+
     useEffect(() => {
         getPosts();
     }, [])
