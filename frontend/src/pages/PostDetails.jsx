@@ -89,7 +89,7 @@ const PostDetails = () => {
                 <p>Loading comments...</p>
             ) : comments.length > 0 ? (
                 comments.map(comment => (
-                    <div key={comment.id}>
+                    <div className="comments" key={comment.id}>
                         <p>{comment.content}</p>
                         <h4>Author</h4>
                         <p>

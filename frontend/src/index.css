@@ -35,3 +35,8 @@ ul li a.active {
   margin-right: 10px;
   height: auto;
 }
+
+.comments {
+  background-color: #f0f0f0;
+  max-width: 30%;
+}
